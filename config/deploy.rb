@@ -28,7 +28,7 @@ set :deploy_to, "/home/piston/#{application}"
 set :deploy_via, :copy
 set :copy_strategy, :export
 set :copy_compression, :zip
-set :node_env, 'production'
+#set :node_env, 'production'
 #set :node_port, 443
 #set :node_port, 8888
 set :user, "piston"
