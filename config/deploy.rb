@@ -26,7 +26,7 @@ role :app, "ec2-54-248-162-211.ap-northeast-1.compute.amazonaws.com"            
 set :use_sudo, false
 set :deploy_to, "/home/piston/#{application}"
 set :deploy_via, :copy
-set :copy_strategy, :export
+# set :copy_strategy, :export
 set :copy_compression, :zip
 set :node_env, 'production'
 #set :node_port, 443
