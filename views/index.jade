@@ -14,7 +14,6 @@ head
     }
 
 body
-  video(id="myVideo", width="400", height="300", autoplay)
   div(id="output")
   
   script(type="text/javascript")
@@ -25,30 +24,38 @@ body
                             navigator.mozGetUserMedia ||
                             navigator.msGetUserMedia );
 
-    navigator.getMedia({audio:true, video:true}, success, error);
+    navigator.getMedia({audio:true, video:false}, success, error);
 
     function success(stream) {
       var context = new webkitAudioContext();
       var source = context.createMediaStreamSource(stream);
       var audioAnalyser = context.createAnalyser();
       var audioAnalyzedData = new Uint8Array(audioAnalyser.frequencyBinCount);
+      var stateblowing = false;
 
       source.connect(audioAnalyser);
       //source.connect(context.destination);
 
       data = audioAnalyser.getByteFrequencyData(audioAnalyzedData);
-      console.log(audioAnalyzedData);
+      console.log(audioAnalyzedData[360]);
 
       setInterval(function(){
         audioAnalyser.getByteFrequencyData(audioAnalyzedData);
-        // console.log(audioAnalyzedData[400]);
-        if (audioAnalyzedData[360] > 50){
-          $("#output").text("ふいてる");
+      
+        if ((audioAnalyzedData[360] > 55) && stateblowing == true){
+          $("#output").text("ふいた");
           submit();
-        }else{
-        $("#output").text("");
-        }
-      },100);
+          stateblowing = false;
+        } else {
+          $("#output").text("");
+        };
+
+        //　次にここまで音量が下がったらフラッグを戻すという設定
+        if (audioAnalyzedData[360] < 19){
+          stateblowing = true;
+        };
+
+      }, 100);
 
       // video.src = window.webkitURL.createObjectURL(stream);
       
@@ -57,5 +64,7 @@ body
     function error(err) {
       console.log(err);
     }
+
+  <iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live stream by Ustream</a>
 
 
