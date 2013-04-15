@@ -14,57 +14,65 @@ head
     }
 
 body
-  div(id="output")
-  
-  script(type="text/javascript")
-    console.log("start");
-    var video = document.getElementById('myVideo');
-    navigator.getMedia = ( navigator.getUserMedia ||
-                            navigator.webkitGetUserMedia ||
-                            navigator.mozGetUserMedia ||
-                            navigator.msGetUserMedia );
+  div(class="wrapper")
+    div(class="output")
+    div(class="wrapper-inner")
+      script(type="text/javascript")
+        console.log("start");
+        var video = document.getElementById('myVideo');
+        navigator.getMedia = ( navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia ||
+                                navigator.msGetUserMedia );
 
-    navigator.getMedia({audio:true, video:false}, success, error);
+        navigator.getMedia({audio:true, video:false}, success, error);
 
-    function success(stream) {
-      var context = new webkitAudioContext();
-      var source = context.createMediaStreamSource(stream);
-      var audioAnalyser = context.createAnalyser();
-      var audioAnalyzedData = new Uint8Array(audioAnalyser.frequencyBinCount);
-      var stateblowing = false;
+        function success(stream) {
+          var context = new webkitAudioContext();
+          var source = context.createMediaStreamSource(stream);
+          var audioAnalyser = context.createAnalyser();
+          var audioAnalyzedData = new Uint8Array(audioAnalyser.frequencyBinCount);
+          var stateblowing = false;
 
-      source.connect(audioAnalyser);
-      //source.connect(context.destination);
+          source.connect(audioAnalyser);
+          //source.connect(context.destination);
 
-      data = audioAnalyser.getByteFrequencyData(audioAnalyzedData);
-      console.log(audioAnalyzedData[360]);
+          data = audioAnalyser.getByteFrequencyData(audioAnalyzedData);
+          console.log(audioAnalyzedData[360]);
 
-      setInterval(function(){
-        audioAnalyser.getByteFrequencyData(audioAnalyzedData);
-        console.log(audioAnalyzedData[360]);      
-        if ((audioAnalyzedData[360] > 48) && stateblowing == true){
-          $("#output").text("ふいた");
-          submit();
-          stateblowing = false;
-        } else {
-          $("#output").text("");
-        };
-
-        //　次にここまで音量が下がったらフラッグを戻すという設定
-        if (audioAnalyzedData[360] < 22){
-          stateblowing = true;
-        };
-
-      }, 20);
-
-      // video.src = window.webkitURL.createObjectURL(stream);
+          setInterval(function(){
+            audioAnalyser.getByteFrequencyData(audioAnalyzedData);
+            console.log(audioAnalyzedData[360]);      
+            if ((audioAnalyzedData[360] > 48) && stateblowing == true){
+              $("#output").text("ふいた");
+              submit();
+              stateblowing = false;
+            } else {
+              $("#output").text("");
+            };
+            //　次にここまで音量が下がったらフラッグを戻すという設定
+            if (audioAnalyzedData[360] < 22){
+              stateblowing = true;
+            };
+          }, 20);
       
-    }
-    
-    function error(err) {
-      console.log(err);
-    }
+        // video.src = window.webkitURL.createObjectURL(stream);  
+        }
+        
+        function error(err) {
+          console.log(err);
+        }
 
-  <iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live stream by Ustream</a>
+      div(class="iframe")
+        <iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
+      div(class="text")
+        div(class="title-logo")
+          h1 Piston Machine で風送るウェブサイト
+        p 画面に向かって息を吹きかけると風車が回ります。
+        p ※ 対応ブラウザ：Google Chrome(ver.26以上)とMozilla Firefox(ver.22)のみ。
+        p ※ choromeの場合 chrome://flags/ から「ウェブ音声入力」を有効にしてください。
+        p ※ ブラウザの上部に「マイクへのアクセスを求めています」と表示されたら、<br>許可をクリックしてください。
 
+      footer(class="footer")
+        p Uniba Inc. Some Rights Reserved.
 

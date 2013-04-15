@@ -1,8 +1,28 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+  margin: 0; }
+  body .wrapper {
+    width: 100%;
+    background-image: url("../images/keyvisual_master_large.jpg");
+    background-size: 100%;
+    display: inline-block; }
+    body .wrapper .wrapper-inner {
+      margin: 0 auto;
+      padding-top: 100px;
+      padding-bottom: 500px;
+      width: 608px; }
+      body .wrapper .wrapper-inner .iframe {
+        margin: 0 auto; }
+      body .wrapper .wrapper-inner .text {
+        color: #fff;
+        padding-top: 20px;
+        text-align: center; }
+        body .wrapper .wrapper-inner .text .title-logo {
+          font-family: "ヒラギノ明朝 ProN W6","HiraMinProN-W6";
+          font-size: 15px; }
+        body .wrapper .wrapper-inner .text p {
+          font-family: "ヒラギノ明朝 ProN W3","Hiragino Mincho ProN";
+          font-size: 14px; }
+      body .wrapper .wrapper-inner .footer {
+        font-size: 10px;
+        position: absolute;
+        bottom: 20px; }
