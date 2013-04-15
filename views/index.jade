@@ -41,8 +41,8 @@ body
 
       setInterval(function(){
         audioAnalyser.getByteFrequencyData(audioAnalyzedData);
-      
-        if ((audioAnalyzedData[360] > 55) && stateblowing == true){
+        console.log(audioAnalyzedData[360]);      
+        if ((audioAnalyzedData[360] > 48) && stateblowing == true){
           $("#output").text("ふいた");
           submit();
           stateblowing = false;
@@ -51,11 +51,11 @@ body
         };
 
         //　次にここまで音量が下がったらフラッグを戻すという設定
-        if (audioAnalyzedData[360] < 19){
+        if (audioAnalyzedData[360] < 22){
           stateblowing = true;
         };
 
-      }, 100);
+      }, 20);
 
       // video.src = window.webkitURL.createObjectURL(stream);
       
