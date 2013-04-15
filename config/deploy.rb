@@ -7,8 +7,8 @@ set :repository, "git@github.com:ogawakeisuke/chat_test.git"
 # set :local_repository, "#{Dir::pwd}/.git"
 
 set :branch, "master"
-role :web, "ec2-54-248-162-211.ap-northeast-1.compute.amazonaws.com"                          # Your HTTP server, Apache/etc
-role :app, "ec2-54-248-162-211.ap-northeast-1.compute.amazonaws.com"                          # This may be the same as your `Web` server
+role :web, "54.249.233.250"                          # Your HTTP server, Apache/etc
+role :app, "54.249.233.250"                          # This may be the same as your `Web` server
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
