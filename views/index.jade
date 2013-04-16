@@ -13,6 +13,11 @@ head
       console.log("ふいてる");
     }
 
+    // debug用
+    $("#button").bind("click", function() {
+        submit();
+    });
+
 body
   div(class="wrapper")
     div(class="output")
@@ -62,11 +67,6 @@ body
         function error(err) {
           console.log(err);
         }
-
-        // debug用
-        $("#button").bind("click", function() {
-            submit();
-        });
 
       div(class="iframe")
         <iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
