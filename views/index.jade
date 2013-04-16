@@ -13,10 +13,6 @@ head
       console.log("ふいてる");
     }
 
-    // debug用
-    $("#button").bind("click", function() {
-        submit();
-    });
 
 body
   div(class="wrapper")
@@ -30,7 +26,10 @@ body
                                 navigator.mozGetUserMedia ||
                                 navigator.msGetUserMedia );
 
-        navigator.getMedia({audio:true, video:false}, success, error);
+
+        if (navigator.getMedia){
+          navigator.getMedia({audio:true, video:false}, success, error);
+        }
 
         function success(stream) {
           var context = new webkitAudioContext();
@@ -82,4 +81,11 @@ body
 
       footer(class="footer")
         p Uniba Inc. Some Rights Reserved.
+
+      script(type="text/javascript")
+        // debug用
+        $("#button").bind("click", function() {
+          submit();
+        });
+        
 
