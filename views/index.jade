@@ -33,7 +33,7 @@ body
 
         function success(stream) {
   
-          var context = new AudioContext();
+          var context = new webkitAudioContext();
           var source = context.createMediaStreamSource(stream);
           var audioAnalyser = context.createAnalyser();
           var audioAnalyzedData = new Uint8Array(audioAnalyser.frequencyBinCount);
