@@ -2,7 +2,7 @@ body {
   margin: 0; }
   body .wrapper {
     width: 100%;
-    background-image: url("../images/keyvisual_master_large_2.jpg");
+    /*background-image: url("../images/keyvisual_master_large_2.jpg");*/
     background-size: 100%;
     display: inline-block; }
     body .wrapper .wrapper-inner {
