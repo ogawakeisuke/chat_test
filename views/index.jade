@@ -32,7 +32,8 @@ body
         }
 
         function success(stream) {
-          var context = new webkitAudioContext();
+  
+          var context = new AudioContext();
           var source = context.createMediaStreamSource(stream);
           var audioAnalyser = context.createAnalyser();
           var audioAnalyzedData = new Uint8Array(audioAnalyser.frequencyBinCount);
@@ -68,15 +69,16 @@ body
         }
 
       div(class="iframe")
-        <iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
+        <iframe width="608" height="368" src="http://www.youtube.com/embed/Gz-naR6c9pA" frameborder="0" allowfullscreen></iframe>
+        <!--<iframe src="http://www.ustream.tv/embed/13973387" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>-->
       div(class="text")
         div(class="title-logo")
           h1 Piston Machine で風送るウェブサイト
         p 画面に向かって息を吹きかけると風車が回ります。
-        p ※ 対応ブラウザ：Google Chrome(ver.26以上)とMozilla Firefox(ver.22)のみ。 
+        p ※ 対応ブラウザ：Google Chrome(ver.26以上)のみ。 
         p もしブラウザ対象外の場合はこちらのボタンをお使いください… 
           button(id="button") 風を起こせるボタン
-        p ※ choromeの場合 chrome://flags/ から「ウェブ音声入力」を有効にしてください。
+        p ※ choromeの場合、 chrome://flags/  から「ウェブ音声入力」を有効にしてください。
         p ※ ブラウザの上部に「マイクへのアクセスを求めています」と表示されたら、<br>許可をクリックしてください。
       div(class="text")
         
